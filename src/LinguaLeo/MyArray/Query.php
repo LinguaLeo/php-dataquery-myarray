@@ -70,6 +70,10 @@ class Query implements QueryInterface
                     $indeces[$column][] = $index;
                 }
             }
+
+            if (empty($indeces[$column])) {
+                return [];
+            }
         }
         switch (count($indeces)) {
             case 0: return [];

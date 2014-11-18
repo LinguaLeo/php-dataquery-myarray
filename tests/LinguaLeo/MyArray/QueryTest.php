@@ -321,4 +321,15 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $result->free();
         $this->assertCount(0, $result);
     }
+
+    public function testSelectByMultipleConditions()
+    {
+        $query = $this->getQueryMock();
+
+        $this->criteria->where('foo', 'wrong_value');
+        $this->criteria->where('bar', 400);
+
+        $result = $query->select($this->criteria)->many();
+        $this->assertCount(0, $result);
+    }
 }
